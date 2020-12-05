@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 #if 1
-	// ±àÂë
+	// ç¼–ç 
 	RequestMsg req;
 	req.cmdType = 100;
 	strcpy(req.clientId, "hello");
@@ -20,8 +20,8 @@ int main()
 	char* outData;
 	int len;
 
-	//Ê¹ÓÃ¹¤³§Àà¹¹Ôì±à½âÂë¶ÔÏó
-	//1-new×Ó¹¤³§Àà¶ÔÏó
+	//ä½¿ç”¨å·¥åŽ‚ç±»æž„é€ ç¼–è§£ç å¯¹è±¡
+	//1-newå­å·¥åŽ‚ç±»å¯¹è±¡
 	CodecFactory *factory = new RequestFactory(&req);
 	Codec *codec = factory->createCodec();
 	codec->msgEncode(&outData, len);
@@ -41,9 +41,9 @@ int main()
 #endif
 
 #if 0
-//²âÊÔRequestCodecÀà
+//æµ‹è¯•RequestCodecç±»
 
-	// ±àÂë
+	// ç¼–ç 
 	RequestMsg req;
 	req.cmdType = 100;
 	strcpy(req.clientId, "hello");
@@ -52,13 +52,13 @@ int main()
 	strcpy(req.r1, "abcdefg");
 
 	Codec* codec = new RequestCodec(&req);
-	// µ÷ÓÃ±àÂëº¯Êý
+	// è°ƒç”¨ç¼–ç å‡½æ•°
 	char* outData;
 	int len;
 	codec->msgEncode(&outData, len);
 
 	// ========================
-	// ½âÂë
+	// è§£ç 
 	codec = new RequestCodec();
 	RequestMsg* tmp = (RequestMsg*)codec->msgDecode(outData, len);
 	cout << "cmdtype: " << tmp->cmdType << endl;
