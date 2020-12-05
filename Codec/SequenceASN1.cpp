@@ -71,11 +71,11 @@ int SequenceASN1::readNextNode(char * sValue)
 int SequenceASN1::packSequence(char ** outData, int & outLen)
 {
 	DER_ItAsn1_WriteSequence(m_header, &m_temp);
-	//���������ֵ
+	//传输参数赋值
 	*outData = (char *)m_temp->pData;
 	outLen = m_temp->dataLen;
 
-	//�ͷ���������
+	//释放整个链表
 	DER_EASY_FreeQueue(m_header);
 
 	return 0;

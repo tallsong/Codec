@@ -2,15 +2,15 @@
 #include <iostream>
 using namespace std;
 
-//½âÂëµÄÊ±ºòÊ¹ÓÃ
+//è§£ç çš„æ—¶å€™ä½¿ç”¨
 RequestCodec::RequestCodec() : Codec()
 {
 }
 
-//±àÂëµÄÊ±ºòµ÷ÓÃ
+//ç¼–ç çš„æ—¶å€™è°ƒç”¨
 RequestCodec::RequestCodec(RequestMsg * msg)
 {
-	// ¸³Öµ²Ù×÷
+	// èµ‹å€¼æ“ä½œ
 	memcpy(&m_msg, msg, sizeof(RequestMsg));
 }
 
@@ -21,12 +21,12 @@ RequestCodec::~RequestCodec()
 /*
 	struct RequestMsg
 	{
-		//1 ÃÜÔ¿Ğ­ÉÌ  	//2 ÃÜÔ¿Ğ£Ñé; 	// 3 ÃÜÔ¿×¢Ïú
-		int		cmdType;		// ±¨ÎÄÀàĞÍ
-		char	clientId[12];	// ¿Í»§¶Ë±àºÅ
-		char	authCode[65];	// ÈÏÖ¤Âë
-		char	serverId[12];	// ·şÎñÆ÷¶Ë±àºÅ 
-		char	r1[64];			// ¿Í»§¶ËËæ»úÊı
+		//1 å¯†é’¥åå•†  	//2 å¯†é’¥æ ¡éªŒ; 	// 3 å¯†é’¥æ³¨é”€
+		int		cmdType;		// æŠ¥æ–‡ç±»å‹
+		char	clientId[12];	// å®¢æˆ·ç«¯ç¼–å·
+		char	authCode[65];	// è®¤è¯ç 
+		char	serverId[12];	// æœåŠ¡å™¨ç«¯ç¼–å· 
+		char	r1[64];			// å®¢æˆ·ç«¯éšæœºæ•°
 	};
 */
 int RequestCodec::msgEncode(char ** outData, int & len)
@@ -43,7 +43,7 @@ int RequestCodec::msgEncode(char ** outData, int & len)
 
 void * RequestCodec::msgDecode(char * inData, int inLen)
 {
-	//·´ĞòÁĞ»¯
+	//ååºåˆ—åŒ–
 	unpackSequence(inData, inLen);
 	readHeadNode(m_msg.cmdType);
 	readNextNode(m_msg.clientId);
@@ -51,6 +51,6 @@ void * RequestCodec::msgDecode(char * inData, int inLen)
 	readNextNode(m_msg.serverId);
 	readNextNode(m_msg.r1);
 
-	cout << "½âÂë³É¹¦" << endl;
+	cout << "è§£ç æˆåŠŸ" << endl;
 	return &m_msg;
 }

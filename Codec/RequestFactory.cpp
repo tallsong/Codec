@@ -19,12 +19,12 @@ Codec * RequestFactory::createCodec()
 {
 	if (m_flag == true)
 	{
-		//用于编码的类对象
+		//鐢ㄤ簬缂栫爜鐨勭被瀵硅薄
 		return new RequestCodec(m_request);
 	}
 	else
 	{
-		//用于解码的类对象
+		//鐢ㄤ簬瑙ｇ爜鐨勭被瀵硅薄
 		return new RequestCodec();
 	}
 }
